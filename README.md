@@ -1,1 +1,4 @@
-Hi, my name is Jessica Lossmann.  My favorite animals are cats in all shapes and types.  I am taking this class as part of the Computer Programming and Development certificate.  I have never taken classes on this topic before, so I am interested in learning everything and how I can use these new skills in my career.  
+Jessica Lossmann
+jwlossmann@my.waketech.edu
+This is my Wake Tech Github account
+This repository will be used to hold assignments for Web, Pgm, & Db Foundation (2025SP.CTI.110.0002)
