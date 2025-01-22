@@ -2,21 +2,31 @@
 
 ```mermaid
 erDiagram
-    PRODUCT ||--o{ CUSTOMER : places
+    PRODUCT ||--|{ SALES : has
     PRODUCT {
-        string name
-        string custNumber
-        string sector
+        int ProductID PK
+        string Name
     }
-    ORDER ||--|{ LINE-ITEM : contains
-    ORDER {
-        int orderNumber
-        string deliveryAddress
-    }
-    LINE-ITEM {
-        string productCode
-        int quantity
+    SALES {
+        int OrderID PK
+        int ProductID FK
+        int Quantity    
+   }
+    SALES ||--|| CUSTOMER : contains
+        CUSTOMER {
+        int CustomerID PK
+        string Address
+        string Email
         float pricePerUnit
+    }
+    PRODUCT ||--|{ INVENTORY : contains
+    INVENTORY {
+        int ProductID PK
+        string Name
+        string Description
+        string Location
+        float Cost
+        int Quantity
     }
 
 ```
