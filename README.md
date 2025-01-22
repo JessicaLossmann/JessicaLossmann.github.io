@@ -9,7 +9,7 @@ This repository will be used to hold assignments for Web, Pgm, & Db Foundation (
 * Thrifting and collecting for myself and resale 
 * Reading and listening to books
 
-## Website I Recommend 
+## Websites I Recommend 
 * [Ebay](https://www.ebay.com/) - I use ebay to find items I want to purchase, to sell items, and to find prices for items that have sold.
 * [Estatesales.net](https://www.estatesales.net) - I use this site to see what estate sales are available in my area.  I go to estate sales and online auctions to find items.  
 * [Petfinder](https://www.petfinder.com/) - I found my cat Andre on this site.  It features cats and dogs that are available for adoption.  
