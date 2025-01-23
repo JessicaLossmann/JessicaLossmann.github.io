@@ -6,30 +6,36 @@ erDiagram
     PRODUCT {
         int ProductID PK
         string Name
+        string Model
+        string Color
+        float StoreCost
+        float RetailCost
     }
     SALES {
         int OrderID PK
         int ProductID FK
-        int Quantity    
+        int Quantity
+        int CustomerID FK    
    }
     SALES ||--|| CUSTOMER : contains
         CUSTOMER {
         int CustomerID PK
+        string Name
+        string PhoneNumber
         string Address
         string Email
-        float pricePerUnit
     }
-    PRODUCT ||--|{ INVENTORY : contains
+    PRODUCT ||--|| INVENTORY : contains
     INVENTORY {
         int ProductID PK
-        string Name
         string Description
         string Location
-        float Cost
         int Quantity
     }
 
 ```
+
+
 
 
 
