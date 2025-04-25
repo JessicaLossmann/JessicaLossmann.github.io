@@ -3,7 +3,7 @@ function fetchGradeData() {
   // This function will query the PostgreSQL database and return grade data
   console.log("Fetching grade data...");
   // Create a new request for HTTP data
-  let xhr = new XMLThhpRequest();
+  let xhr = new XMLHttpRequest();
   // This is the address on the machine we're asking for data
   let apiRoute = "/api/grades";
   // When the request changes status, we run this anonyous function
@@ -13,8 +13,8 @@ function fetchGradeData() {
     if(xhr.readyState === xhr.DONE){
       // Check if we're successful
       if(xhr.status !== 200){
-        console.error('Cound not get grades.
-                      Status: ${xhr.status}');
+          console.error('Cound not get grades.
+              Status: ${xhr.status}');
       }
       // And then call the function to update the HTML with our data
       populateGradebook(JSON.parse(xhr.responseTest));
