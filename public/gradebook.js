@@ -25,13 +25,20 @@ function populateGradebook(data) {
   let tableElm = document.getElementById("gradebook");
     data.forEach(function(assignment){
       let row = document.createElement("tr")
-
-    row.appendChild(nameCell);
-    row.appendChild(gradeCell);
-    tableElm.appendChild(row);
-  });
-}
-
+      let columns = [];
+      columns.name = document.createElement('td');
+      columns.name.appendChild(
+        coument.createTextNode(assignment.last_name +", "+ assignment.first_name)
+        ):
+      columns.grade = document.createElement('td'):
+      columns.grade.appendChild(
+        document.createTextNode(assignment.total_grade)
+      );
+      row.appendChild(columns.name);
+      row.appendChild(columns.grade);
+      tableElm.appendChild(row);
+    });
+} 
 
 //TODO REMOVE THIS
 //Call the stubs to demonstrate the workflow
