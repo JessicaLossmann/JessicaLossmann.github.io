@@ -13,8 +13,8 @@ function fetchGradeData() {
     if(xhr.readyState === xhr.DONE){
       // Check if we're successful
       if(xhr.status !== 200){
-        console.error('Cound not get grades.
-                      Status: ${xhr.status}');
+          console.error('Cound not get grades.
+              Status: ${xhr.status}');
       }
       // And then call the function to update the HTML with our data
       populateGradebook(JSON.parse(xhr.responseTest));
