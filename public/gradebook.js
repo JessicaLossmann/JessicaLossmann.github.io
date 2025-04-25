@@ -6,21 +6,15 @@ function fetchGradeData() {
   let apiRoute = "/api/grades";
 
   xhr.onreadystatechange = function () {
+      let results;
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status !== 200) {
-        console.error(`Could not get grades. Status: ${xhr.status}`);
-        return;
+        console.error(`Could not get grades. 
+                Status: ${xhr.status}`);
+       }
+      populateGradebook(JSON.parse(xhr.responseText));
       }
-
-      try {
-        const data = JSON.parse(xhr.responseText);
-        populateGradebook(data);
-      } catch (e) {
-        console.error("Failed to parse response JSON:", e);
-      }
-    }
-  };
-
+  }.bind(this);
   xhr.open("GET", apiRoute, true);
   xhr.send();
 }
@@ -28,22 +22,9 @@ function fetchGradeData() {
 // Populate the table with grade data
 function populateGradebook(data) {
   console.log("Populating gradebook with data:", data);
-
-  const tableElm = document.getElementById("gradebook");
-  tableElm.innerHTML = ''; // Clear existing rows if any
-
-  data.forEach(function (assignment) {
-    const row = document.createElement("tr");
-
-    const nameCell = document.createElement("td");
-    nameCell.appendChild(
-      document.createTextNode(`${assignment.last_name}, ${assignment.first_name}`)
-    );
-
-    const gradeCell = document.createElement("td");
-    gradeCell.appendChild(
-      document.createTextNode(assignment.total_grade)
-    );
+  let tableElm = document.getElementById("gradebook");
+    data.forEach(function(assignment){
+      let row = document.createElement("tr")
 
     row.appendChild(nameCell);
     row.appendChild(gradeCell);
