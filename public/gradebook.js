@@ -7,7 +7,7 @@ function fetchGradeData() {
 
   xhr.onreadystatechange = function () {
       let results;
-    if (xhr.readyState === XMLHttpRequest.DONE) {
+    if (xhr.readyState === xhr.DONE) {
       if (xhr.status !== 200) {
         console.error(`Could not get grades. 
                 Status: ${xhr.status}`);
@@ -15,7 +15,7 @@ function fetchGradeData() {
       populateGradebook(JSON.parse(xhr.responseText));
       }
   }.bind(this);
-  xhr.open("GET", apiRoute, true);
+  xhr.open("getr", apiRoute, true);
   xhr.send();
 }
 
