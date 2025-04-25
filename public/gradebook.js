@@ -1,56 +1,56 @@
-// TODO: Fetch data from the PostgreSQL database (to be implemented later)
+// Fetch data from the PostgreSQL database (simulated via API)
 function fetchGradeData() {
-  // This function will query the PostgreSQL database and return grade data
   console.log("Fetching grade data...");
-  // Create a new request for HTTP data
+
   let xhr = new XMLHttpRequest();
-  // This is the address on the machine we're asking for data
   let apiRoute = "/api/grades";
-  // When the request changes status, we run this anonyous function
-  xhr.onreadystatechange = function (){
-    let results;
-    // Check if we're done
-    if(xhr.readyState === xhr.DONE){
-      // Check if we're successful
-      if(xhr.status !== 200){
-          console.error('Cound not get grades.
-              Status: ${xhr.status}');
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status !== 200) {
+        console.error(`Could not get grades. Status: ${xhr.status}`);
+        return;
       }
-      // And then call the function to update the HTML with our data
-      populateGradebook(JSON.parse(xhr.responseTest));
+
+      try {
+        const data = JSON.parse(xhr.responseText);
+        populateGradebook(data);
+      } catch (e) {
+        console.error("Failed to parse response JSON:", e);
+      }
     }
-  }.bind(this);
-  xhr.open("get", apiRoute, true);
+  };
+
+  xhr.open("GET", apiRoute, true);
   xhr.send();
 }
 
-// TODO: Populate the table with grade data
+// Populate the table with grade data
 function populateGradebook(data) {
-  //This function will take the fetched grade data and populate the table
   console.log("Populating gradebook with data:", data);
-  let tableElm = document.getElementById("gradebook");// Get the gradebook table element
-      data.forEach(function(assignment){ // For ech row of data we're passed in 
-        let row = document.createElement("tr"); //create a table row element
-        let columns = []; // Handy place to stick the columns of informaion
-        columns.name = document.createElement('td'); // The first column's table data will be the name
-        columns.name.appendChild(
-          // concatenate the full name: "last_name, first_name"
-          document.createTextNode(assignment.last_name + "," + assignment.first_name)
-          );
-        columns.grade = document.createElement('td'); //second column will be the grade
-        columns.grade.appendChild(
-          // Just put the name in text, you could be fancy and figure out the letter grade here
-          // with either a bunch of conditions, or a JavaScript "switch" statement
-          document.createTextNode(assignment.total_grade)
-          );
-        // And the table data columns to the table row
-        row.appendChild(columns.name);
-        row.appendChild(columns.grade);
-        // Add the row to the table itself to make the data visible
-        tableElm.appendChild(row);
-      });
+
+  const tableElm = document.getElementById("gradebook");
+  tableElm.innerHTML = ''; // Clear existing rows if any
+
+  data.forEach(function (assignment) {
+    const row = document.createElement("tr");
+
+    const nameCell = document.createElement("td");
+    nameCell.appendChild(
+      document.createTextNode(`${assignment.last_name}, ${assignment.first_name}`)
+    );
+
+    const gradeCell = document.createElement("td");
+    gradeCell.appendChild(
+      document.createTextNode(assignment.total_grade)
+    );
+
+    row.appendChild(nameCell);
+    row.appendChild(gradeCell);
+    tableElm.appendChild(row);
+  });
 }
-}
+
 
 //TODO REMOVE THIS
 //Call the stubs to demonstrate the workflow
